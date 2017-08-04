@@ -1,0 +1,71 @@
+#der: /u/gcmpack/MITgcm/tools/build_options/linux_amd64_gfortran,v 1.23 2013/11/27 22:07:11 jmc Exp $
+#  $Name:  $
+
+# and on baudelaire.csail.mit.edu (FC13), using:
+#       export MPI_GCC_DIR=/srv/software/gcc/gcc-packages/gcc-4.4.5/mpich2/mpich2-1.3
+#       export MPI_INC_DIR=$MPI_GCC_DIR/include
+#       export PATH=$MPI_GCC_DIR/bin:$PATH
+#
+#-------
+# run with OpenMP: needs to set environment var. OMP_NUM_THREADS
+#    and generally, needs to increase the thread stack-size:
+#   -  sh,bash:
+#     > export OMP_NUM_THREADS=2
+#     > export GOMP_STACKSIZE=400m
+#   - csh,tcsh:
+#     > setenv OMP_NUM_THREADS 2
+#     > setenv GOMP_STACKSIZE 400m
+#-------
+
+CC=cc
+FC=ftn
+F90C=ftn
+MPI='true'
+
+
+DEFINES='-DWORDLENGTH=4 -DNML_TERMINATOR'
+EXTENDED_SRC_FLAG='-ffixed-line-length-132'
+F90FIXEDFORMAT='-ffixed-form'
+GET_FC_VERSION="--version"
+OMPFLAG='-fopenmp'
+
+NOOPTFLAGS='-O0'
+NOOPTFILES=''
+
+CFLAGS='-O0'
+#- Requires gfortran from 2006 onwards for -fconvert=big-endian
+FFLAGS="$FFLAGS -fconvert=big-endian -fimplicit-none"
+#- for big setups, compile & link with "-fPIC" or set memory-model to "medium":
+#CFLAGS="$CFLAGS -fPIC"
+#FFLAGS="$FFLAGS -fPIC"
+#-  with FC 19, need to use this without -fPIC (which cancels -mcmodel option):
+ CFLAGS="$CFLAGS -mcmodel=medium"
+ FFLAGS="$FFLAGS -mcmodel=medium"
+#- might want to use '-fdefault-real-8' for fizhi pkg:
+#FFLAGS="$FFLAGS -fdefault-real-8 -fdefault-double-8"
+
+INCLUDES='-I/opt/cray/mpt/default/gni/mpich-gnu/49/include -I/opt/cray/netcdf/default/gnu/48/include'
+#INCLUDES='-I.'
+LIBS='-L/opt/cray/mpt/default/gni/mpich2-gnu/48/lib -L/opt/cray/netcdf/default/gnu/48/lib -lnetcdf -lnetcdff'
+#LIBS='-lnetcdf -lnetcdff'
+if test "x$IEEE" = x ; then     #- with optimisation:
+   #- can use -O2 (safe optimisation) to avoid Pb with some gcc version of -O3:
+    FOPTIM='-O3 -funroll-loops'
+    NOOPTFILES="$NOOPTFILES ini_masks_etc.F"
+else
+   # these may also be useful, but require specific gfortran versions:
+   # -Wno-tabs            for gfortran >= 4.3
+   #FFLAGS="$FFLAGS -Waliasing -Wampersand -Wsurprising -Wline-truncation"
+   #- or simply:
+    FFLAGS="$FFLAGS -Wall -Wno-unused-dummy-argument"
+   #- to get plenty of warnings: -Wall -Wextra (older form: -Wall -W) or:
+   #FFLAGS="$FFLAGS -Wconversion -Wimplicit-interface -Wunused-labels"
+  if test "x$DEVEL" = x ; then  #- no optimisation + IEEE :
+    FOPTIM='-O0'
+  else                          #- development/check options:
+    FOPTIM='-O0 -g -fbounds-check -ffpe-trap=invalid,zero,overflow -finit-real=inf'
+  fi
+fi
+
+F90FLAGS=$FFLAGS
+F90OPTIM=$FOPTIM

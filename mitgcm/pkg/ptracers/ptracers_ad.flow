@@ -1,0 +1,20 @@
+C $Header: /u/gcmpack/MITgcm/pkg/ptracers/ptracers_ad.flow,v 1.4 2010/01/03 03:12:38 jmc Exp $
+C $Name:  $
+
+C----------------------------------------
+C subroutine  ptracers_debug
+C----------------------------------------
+CADJ SUBROUTINE ptracers_debug  INPUT  = 1
+CADJ SUBROUTINE ptracers_debug  OUTPUT =
+
+C----------------------------------------
+C subroutine  ptracers_read_pickup
+C----------------------------------------
+CADJ SUBROUTINE ptracers_read_pickup  INPUT  = 1,2
+CADJ SUBROUTINE ptracers_read_pickup  OUTPUT =
+
+C----------------------------------------
+C subroutine  ptracers_timeave
+C----------------------------------------
+CADJ SUBROUTINE ptracers_timeave  INPUT  = 1,2,3,4,5
+CADJ SUBROUTINE ptracers_timeave  OUTPUT =

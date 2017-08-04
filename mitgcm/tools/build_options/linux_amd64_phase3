@@ -1,0 +1,16 @@
+
+#!/bin/bash
+
+FC='ftn'
+CC='cc'
+CPP='cpp -P -traditional'
+LINK='ftn'
+
+MPI='true'
+DEFINES='-DWORDLENGTH=4'
+
+FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend -Ktrap=fp'
+FOPTIM='-O3 -fastsse'
+
+INCLUDES='-I/usr/local/include -I/opt/cray/mpt/default/gni/mpich2-pgi/119/include -I/opt/cray/netcdf/4.1.3/pgi/109/include'
+LIBS='-lnetcdf -lnetcdff'

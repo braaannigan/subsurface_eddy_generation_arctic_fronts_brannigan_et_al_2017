@@ -1,0 +1,20 @@
+/TIMEAVE_OPTIONS.h/1.2/Thu Oct  9 04:19:20 2003//
+/TIMEAVE_STATV.h/1.18/Mon Dec 28 02:43:52 2009//
+/timeave_ad_diff.list/1.4/Sun Jan  3 23:49:00 2010//
+/timeave_cumul_1k1t.F/1.4/Fri Aug 19 22:50:26 2005//
+/timeave_cumul_1t.F/1.5/Fri Aug 19 22:50:26 2005//
+/timeave_cumul_1vfc.F/1.5/Fri Nov  4 01:35:33 2005//
+/timeave_cumul_2v.F/1.7/Fri Aug 19 22:50:26 2005//
+/timeave_cumul_2vfc.F/1.4/Fri Aug 19 22:50:26 2005//
+/timeave_cumul_dif_1t.F/1.3/Fri Aug 19 22:50:26 2005//
+/timeave_cumulate.F/1.4/Fri Aug 19 22:50:26 2005//
+/timeave_description.tex/1.1/Mon Aug  1 20:30:07 2005//
+/timeave_init_fixed.F/1.6/Tue Sep 27 13:31:40 2005//
+/timeave_norma_2v.F/1.2/Fri Dec  5 02:27:58 2003//
+/timeave_normaliz.F/1.5/Sun Jan  3 20:46:12 2010//
+/timeave_normalize.F/1.1/Mon Dec 28 01:03:17 2009//
+/timeave_reset.F/1.2/Thu Oct  9 04:19:20 2003//
+/timeave_statv_write.F/1.41/Fri Jan 15 22:43:55 2010//
+/timeave_statvars.F/1.25/Mon Dec 28 02:43:52 2009//
+/timeave_surf_flux.F/1.6/Wed Apr 27 20:21:42 2011//
+D
