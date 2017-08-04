@@ -1,0 +1,93 @@
+# ====================
+# | Model parameters |
+# ====================
+#
+# Continuous equation parameters
+ &PARM01
+ viscAz=1.E-5,
+ viscC4Smag=1.0,
+# This is the max Viscosity used, be it Smag or Leith, and it scales 
+# with grid size and timestep
+ viscA4GridMax=1.0,
+# useFullLeith=.TRUE.,
+ vectorInvariantMomentum=.TRUE.,
+ no_slip_sides=.TRUE.,
+ no_slip_bottom=.TRUE.,
+# bottomDragLinear=1.1E-3,
+ bottomDragQuadratic=3.E-3,
+ diffK4T=1.E3,
+ diffKzT=1.E-5,
+ diffK4S=1.E3,
+ diffKzS=1.E-5,
+ f0=1.4E-4,
+ beta=0.E1,
+ tAlpha=0.0E-4,
+ sBeta=7.4E-4,
+ gravity=9.81,
+ rhoConst=1025.,
+ rhoNil=1025.,
+ heatCapacity_Cp=4000.,
+ implicitFreeSurface=.TRUE.,
+ implicitDiffusion=.TRUE.,
+ implicitViscosity=.TRUE.,
+ staggerTimeStep=.TRUE.,
+ tempAdvScheme=7,
+ saltAdvScheme=7,
+ readBinaryPrec=64,
+# exactConserv=.TRUE.,
+ eosType='LINEAR',
+ nonHydrostatic=.FALSE.,
+ debugLevel=-1,
+# checkIniTemp=.FALSE.,
+ &
+
+# Elliptic solver parameters
+ &PARM02
+ cg2dMaxIters=1000,
+ cg2dTargetResidual=1.E-8,
+ cg3dMaxIters=1000,
+ cg3dTargetResidual=1.E-8,
+ &
+
+# Time stepping parameters
+ &PARM03
+ nIter0=0,
+#endTime=43200.,
+ nTimeSteps=10368,
+ deltaT=25,
+ abEps=0.1,
+ pChkptFreq=259200,
+ chkptFreq=0.,
+ dumpFreq=0000000.,  
+ monitorFreq=21600.,
+ monitorSelect=3600000,
+ periodicExternalForcing=.TRUE.,
+ externForcingPeriod=3600.,
+ externForcingCycle=259200.,
+ &
+
+# Gridding parameters
+ &PARM04
+ usingCartesianGrid=.TRUE.,
+ dXspacing=250.,
+ dYspacing=250.,
+ delZ=0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,
+0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,
+0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,
+0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.6,0.7,0.8,0.9,1.,
+1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.,1.5,1.5,1.5,1.5,
+1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,
+1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,
+ &
+ 
+# Input datasets
+ &PARM05
+ bathyFile='dx250nx256ny1536topog.bin',
+ hydrogThetaFile='dx250H130PoTemp.bin',
+ hydrogSaltFile='dx250H130Salt.bin',
+ zonalWindFile='windx3ramp.bin',
+# meridWindFile='windy.03_3d',
+ uVelInitFile='dx250H130U.bin',
+ pSurfInitFile='dx250H130Eta.bin',
+ checkIniTemp=.FALSE.,
+ &
