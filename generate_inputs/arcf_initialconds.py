@@ -3,7 +3,6 @@ import numpy as np
 
 import genmit as gm
 import eosmit
-from arcf_mods import arcf_chdir as chd
 
 def create_arcf_binary(z, dx, dy, nx, ny, f, H1, dh, dSh, Lf):
 
@@ -16,7 +15,7 @@ def create_arcf_binary(z, dx, dy, nx, ny, f, H1, dh, dSh, Lf):
     dh = float(dh)
     dSh = float(dSh)
     Lf = float(Lf)
-    
+
     #Define the vertical grid
     z1=np.concatenate([-0.5*np.ones((50)) ,np.array([-0.6, -0.7, -0.8, -0.9]),
                        -1*np.ones((14)),-1.5*np.ones((32))] )
@@ -39,7 +38,8 @@ def create_arcf_binary(z, dx, dy, nx, ny, f, H1, dh, dSh, Lf):
     dz = np.abs(np.diff(z))
     dz = np.transpose(np.tile( (abs(np.diff(np.hstack( (0, z))))),(len(y),1)))
 
-    eta = -(1./1025)*np.sum( (rho - 0.5 * (np.transpose(np.tile(rho[:,0] + rho[:,0.5*len(y)],(len(y),1))) )) * dz, axis = 0)
+    eta = -(1./1025)*np.sum( (rho - 0.5 * (np.transpose(np.tile(rho[:,0] +
+    rho[:,int(0.5*len(y))],(len(y),1))) )) * dz, axis = 0)
 
 
     u = np.zeros( np.shape(rho) )
@@ -74,4 +74,3 @@ def create_arcf_binary(z, dx, dy, nx, ny, f, H1, dh, dSh, Lf):
     gm.write_uvel(dx,H1,U)
     eta = np.transpose( eta, (1,0))
     gm.write_eta(dx,H1,eta)
-

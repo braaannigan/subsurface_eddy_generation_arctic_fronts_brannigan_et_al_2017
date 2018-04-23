@@ -30,5 +30,5 @@ date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 time_stamp = date[0:4] + '_' + date[5:7] + '_'+ date[8:10] + '_'+ date[11:13] + '_'+ date[14:16]
 
 #Create a datestamped version of the python scripts used to generate the inputs
-## YOU need to adjust the path for this
-shutil.copy2('/path/to/arcf_initialconds.py', 'arcf_initialconds_' + time_stamp + '.py')
+## YOU need to adjust the path to the arcf_initialconds.py to match
+shutil.copy2('arcf_initialconds.py', 'arcf_initialconds_' + time_stamp + '.py')
